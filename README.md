@@ -38,6 +38,16 @@ flowchart LR
 
 A RAT client (agent) typically communicates with a controller. The operator issues commands and receives responses. The exact transport, authentication, permissions, and available functions depend on the specific implementation and version. **A network connection alone is not proof of malware.**
 
+## Hands-on pentester lab — benign C2 traffic emulation
+
+A pentester with **written authorization** can reproduce **one network-level property** of a RAT: an endpoint periodically contacting a server. This lab deliberately uses a **harmless HTTP status request** rather than Quasar, an interactive agent, a reverse shell, covert persistence, crypters, or antivirus bypass. It is a **telemetry exercise, not a RAT implementation**.
+
+**Start here:** [`lab/README.md`](lab/README.md) (step-by-step instructions) and [`lab/benign-heartbeat.ps1`](lab/benign-heartbeat.ps1) (bounded PowerShell client).
+
+**What the exercise covers:** an isolated Kali HTTP listener, five Windows HTTP requests, Wireshark packet capture, Defender checks, optional Sysmon process/network events, evidence collection, and a concise comparison of observation vs. detection.
+
+**What it does not demonstrate:** successful C2 task execution, remote control, persistent malware deployment, or bypass of Windows Defender. No public tunnel or malware binary is required.
+
 ## Original workflow — technical explanation and defensive implications
 
 ### Traceability to the original Quasar notes
@@ -173,6 +183,7 @@ A custom TCP channel does **not** automatically prove use of ATT&CK T1071; the o
 
 ## Planned work and evidence status
 
+- [x] Add a reproducible benign C2-traffic emulation guide and PowerShell sample (documentation published; lab outcome not yet verified).
 - [x] Outline the Quasar architecture and original technique categories.
 - [x] Define an isolated Windows research methodology.
 - [x] Provide basic Defender and Sysmon log-query examples.
