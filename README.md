@@ -40,6 +40,20 @@ A RAT client (agent) typically communicates with a controller. The operator issu
 
 ## Original workflow — technical explanation and defensive implications
 
+### Traceability to the original Quasar notes
+
+The initial notes were written as a practical deployment recipe. For research transparency, their original **topics and intent** are documented here, with corrections and safer testing boundaries. This is **not** a procedure for deploying a covert RAT.
+
+1. **Quasar acquisition and client/server concept.** The original reference is [Quasar releases](https://github.com/quasar/Quasar/releases). In Quasar terminology, an operator manages a controller and an endpoint **client**. The source repository can be inspected to understand this architecture. No pre-built agent or client-generation recipe is distributed here.
+2. **Public TCP tunneling (Playit).** The notes proposed **playit.gg** as an intermediary between the operator and the client. In general, TCP forwarding can expose a listening service through a relay. This does **not** guarantee connections, conceal malicious traffic, or imply permission to route RAT command-and-control through a third-party service. Respect the provider's acceptable-use rules. For authorized demonstrations, use an isolated virtual network and benign TCP applications.
+3. **Client creation and controller address.** The original material referred to a `create client` feature and configuration of a remote host address. Conceptually, an agent needs to know how to reach its controller. Endpoint analysts can correlate configured destinations with DNS, network-flow, and process evidence.
+4. **Automatic startup.** The original material proposed enabling a startup option. This is a **persistence** concept: a program runs again after login or reboot. In a benign lab, investigate startup entries and detection artifacts without registering a covert RAT.
+5. **Executable metadata and masquerading.** The notes proposed changing the executable name and icon to resemble a trusted application (e.g., a browser). That constitutes **masquerading** when used to mislead a user. Changing metadata is not proof of evasion. Analyze file signatures, signer identity, paths, hashes, and metadata inconsistencies.
+6. **Crypters and antivirus claims.** The original material mentioned **Data Anubis Crypter**, suggested that encryption avoids Windows Defender, and described altering executable bytes. These are **unverified claims**: packing and encryption may change static signatures but cannot establish invisibility to behavioral analysis. This repository neither endorses a crypter nor provides a workflow for bypassing endpoint protection.
+7. **File hosting and distribution.** The original notes mentioned file-sharing sites as delivery locations. Publicly distributing a weaponized remote-access client is not part of this research. Instead, record file provenance and distribution indicators using published reports and benign artifacts.
+
+**Research takeaway:** The preceding items are the same concepts raised by the original method, but they now define **what to investigate**, **why the behavior matters**, and **which claims require evidence**. No victim targeting, payload configuration, covert persistence, AV bypass, or distribution instructions are provided.
+
 The following retains the **same subject areas** as the original notes while separating legitimate lab research from operational deployment.
 
 | Phase discussed in the original notes | Technical meaning | What a defender can investigate |
